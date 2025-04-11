@@ -12,9 +12,10 @@ class Pallet{
         int id;
         double weight;
         double value;
+        double ratio;
 };
 
-Pallet::Pallet(int id, double weight, double value) : id(id), weight(weight), value(value) {}
+Pallet::Pallet(int id, double weight, double value) : id(id), weight(weight), value(value), ratio(value / weight) {}
 
 Pallet::~Pallet() {}
 
