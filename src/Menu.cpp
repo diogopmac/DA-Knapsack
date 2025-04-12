@@ -25,6 +25,27 @@ int Menu::getIntValue(const string &s) {
     return ret;
 }
 
+void Menu::truckInformation() {
+    if (truck.getNumPallets() == 0 || truck.getPallets().size() == 0) {
+        cout << "No truck loaded!" << endl;
+    }
+    else {
+        cout << "========================================\n";
+        cout << "Currently loaded Truck: \n";
+        cout << "Truck capacity: " << truck.getCapacity() << endl;
+        cout << "Pallets loaded: " << truck.getPallets().size() << endl;
+
+        for (auto p : truck.getPallets()) {
+            cout << endl;
+            cout << "Pallet number: " << p->getId() << endl;
+            cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
+        }
+        cout << "========================================\n";
+        cout << endl;
+    }
+}
+
+
 
 void Menu::MainMenu() {
     int option;
@@ -53,33 +74,10 @@ void Menu::MainMenu() {
                 const int truckNumber = getIntValue("Enter Truck number: ");
                 reader.readTrucks("../docs/TruckAndPallets_" + to_string(truckNumber) + ".csv", truck);
                 reader.readPallets("../docs/Pallets_" + to_string(truckNumber) + ".csv", truck);
-
-                cout << truck.getCapacity() << endl;
-                cout << truck.getNumPallets() << endl;
-                cout << truck.getPallets().size() << endl;
-                for (auto p : truck.getPallets()) {
-                    cout << p->getId() << " " << p->getValue() << " " << p->getWeight() <<  endl;
-                }
                 break;
             }
             case 1: {
-                if (truck.getNumPallets() == 0 || truck.getPallets().size() == 0) {
-                    cout << "No truck loaded!" << endl;
-                }
-                else {
-                    cout << "========================================\n";
-                    cout << "Currently loaded Truck: \n";
-                    cout << "Truck capacity: " << truck.getCapacity() << endl;
-                    cout << "Pallets loaded: " << truck.getPallets().size() << endl;
-
-                    for (auto p : truck.getPallets()) {
-                        cout << endl;
-                        cout << "Pallet number: " << p->getId() << endl;
-                        cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
-                    }
-                    cout << "========================================\n";
-                    cout << endl;
-                }
+                truckInformation();
                 break;
             }
             case 2:

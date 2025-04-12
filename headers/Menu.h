@@ -14,6 +14,7 @@ class Menu {
     ~Menu();
     void MainMenu();
     int getIntValue(const std::string &s);
+    void truckInformation();
   private:
     Truck truck;
     DataReader reader;
