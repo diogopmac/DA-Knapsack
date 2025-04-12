@@ -1,0 +1,21 @@
+//
+// Created by diogo on 12/04/2025.
+//
+
+#include "../headers/pallet.h"
+
+Pallet::Pallet(int id, double weight, double value) : id(id), weight(weight), value(value), ratio(value / weight) {}
+
+Pallet::~Pallet() = default;
+
+int Pallet::getId() const {
+    return id;
+}
+
+double Pallet::getWeight() const {
+    return weight;
+}
+
+double Pallet::getValue() const {
+    return value;
+}
