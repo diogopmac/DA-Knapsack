@@ -2,7 +2,7 @@
 // Created by diogo on 12/04/2025.
 //
 
-#include "../headers/pallet.h"
+#include "pallet.h"
 
 Pallet::Pallet(int id, double weight, double value) : id(id), weight(weight), value(value), ratio(value / weight) {}
 

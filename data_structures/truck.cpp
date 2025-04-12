@@ -2,7 +2,7 @@
 // Created by diogo on 12/04/2025.
 //
 
-#include "../headers/truck.h"
+#include "truck.h"
 
 
 Truck::Truck() = default;
