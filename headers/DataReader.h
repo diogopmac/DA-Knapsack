@@ -8,8 +8,8 @@ class DataReader {
     public:
     DataReader();
     ~DataReader();
-    void readPallets(std::string& fileName, Truck& truck);
-    void readTrucks(std::string fileName, Truck& truck);
+    void readPallets(const std::string& fileName, Truck& truck);
+    void readTrucks(const std::string& fileName, Truck& truck);
 };
 
 #endif //DATAREADER_H
