@@ -10,7 +10,7 @@ using namespace std;
 DataReader::DataReader() = default;
 DataReader::~DataReader() = default;
 
-void DataReader::readTrucks(std::string fileName, Truck& truck) {
+void DataReader::readTrucks(const std::string& fileName, Truck& truck) {
     ifstream file(fileName);
     if (!file) {
         cerr << "Error opening file " << fileName << endl;
@@ -37,7 +37,7 @@ void DataReader::readTrucks(std::string fileName, Truck& truck) {
 }
 
 
-void DataReader::readPallets(std::string& fileName, Truck& truck) {
+void DataReader::readPallets(const std::string& fileName, Truck& truck) {
     ifstream file(fileName);
     if (!file) {
         cerr << "Error opening file " << fileName << endl;
@@ -63,8 +63,8 @@ void DataReader::readPallets(std::string& fileName, Truck& truck) {
         weight = stod(weightStr);
         value = stod(valueStr);
 
-        Pallet pallet(id, weight, value);
-        pallets.push_back(&pallet);
+        cout << id << " " << weight << " " << value << endl;
+        pallets.push_back(new Pallet(id, weight, value));
     }
     truck.setPallets(pallets);
     file.close();
