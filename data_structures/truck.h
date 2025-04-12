@@ -9,9 +9,15 @@ class Truck {
     Truck();
     Truck(double capacity, int numPallets, std::vector<Pallet *> pallets);
     ~Truck();
+
     double getCapacity() const;
     int getNumPallets() const;
     std::vector<Pallet *> getPallets() const;
+
+    void setCapacity(double capacity);
+    void setNumPallets(int numPallets);
+    void setPallets(std::vector<Pallet *> pallets);
+
   private:
     double capacity{};
     int numPallets{};

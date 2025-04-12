@@ -6,6 +6,7 @@
 #define MENU_H
 
 #include "../data_structures/truck.h"
+#include "DataReader.h"
 
 class Menu {
   public:
@@ -15,7 +16,7 @@ class Menu {
     int getIntValue(const std::string &s);
   private:
     Truck truck;
-    // Datareader
+    DataReader reader;
 };
 
 #endif //MENU_H

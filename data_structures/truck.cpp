@@ -20,3 +20,15 @@ int Truck::getNumPallets() const {
 std::vector<Pallet *> Truck::getPallets() const {
     return pallets;
 }
+
+void Truck::setCapacity(double capacity) {
+    this->capacity = capacity;
+}
+
+void Truck::setNumPallets(int numPallets) {
+    this->numPallets = numPallets;
+}
+
+void Truck::setPallets(std::vector<Pallet *> pallets) {
+    this->pallets = std::move(pallets);
+}
