@@ -5,8 +5,7 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <string>
-#include "truck.h"
+#include "../data_structures/truck.h"
 
 class Menu {
   public:

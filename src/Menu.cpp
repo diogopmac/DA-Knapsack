@@ -50,13 +50,15 @@ void Menu::MainMenu() {
         }
         switch (option) {
             case 0: {
-                int truckNumber = getIntValue("Enter Truck number: ");
+                const int truckNumber = getIntValue("Enter Truck number: ");
                 cout << "Truck number: " << truckNumber << endl;
                 break;
             }
-            case 1:
-                cout << "WIP" << endl;
+            case 1: {
+                const int truckNumber = getIntValue("Enter Truck number: ");
+                cout << "Truck number: " << truckNumber << endl;
                 break;
+            }
             case 2:
                 cout << "WIP" << endl;
                 break;
