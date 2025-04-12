@@ -5,30 +5,14 @@ class Pallet{
     public:
         Pallet(int id, double weight, double value);
         ~Pallet();
-        int getId();
-        double getWeight();
-        double getValue();
+        int getId() const;
+        double getWeight() const;
+        double getValue() const;
     private:
         int id;
         double weight;
         double value;
         double ratio;
 };
-
-Pallet::Pallet(int id, double weight, double value) : id(id), weight(weight), value(value), ratio(value / weight) {}
-
-Pallet::~Pallet() {}
-
-int Pallet::getId(){
-    return id;
-}
-
-double Pallet::getWeight(){
-  return weight;
-}
-
-double Pallet::getValue(){
-  return value;
-}
 
 #endif //PALLET_H

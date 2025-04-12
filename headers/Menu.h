@@ -5,12 +5,17 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <string>
+#include "truck.h"
+
 class Menu {
   public:
     Menu();
     ~Menu();
     void MainMenu();
+    int getIntValue(const std::string &s);
   private:
+    Truck truck;
     // Datareader
 };
 

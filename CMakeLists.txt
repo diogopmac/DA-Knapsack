@@ -4,4 +4,6 @@ project(project2)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(project2 src/main.cpp
-        src/menu.cpp)
+        src/menu.cpp
+        src/pallet.cpp
+        src/truck.cpp)

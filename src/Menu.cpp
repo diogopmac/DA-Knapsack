@@ -2,7 +2,7 @@
 // Created by diogo on 07/04/2025.
 //
 
-#include "../headers/menu.h"
+#include "../headers/Menu.h"
 
 #include <iostream>
 #include <ostream>
@@ -13,6 +13,19 @@ Menu::Menu() = default;
 
 Menu::~Menu() {}
 
+int Menu::getIntValue(const string &s) {
+    int ret;
+    while (true) {
+        cout << s;
+        if (cin >> ret) break;
+        cout << "ERROR: Wrong input!" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    return ret;
+}
+
+
 void Menu::MainMenu() {
     int option;
 
@@ -20,15 +33,27 @@ void Menu::MainMenu() {
         cout << "========================================\n";
         cout << "Delivery Truck Pallet Packing Optimization\n";
         cout << "========================================\n";
-        cout << "[1] Load a Truck\n" // TEMP
+        cout << "[0] Load a Truck\n"
+                "[1] Show Loaded Truck\n" // TEMP
                 "[2] Exhaustive (Brute Force) Approach\n"
                 "[3] Dynamic Programming Approach\n"
                 "[4] Approximation Algorithms\n"
                 "[5] Integer Linear Programming Algorithm\n"
                 "[6] Exit" << endl;
         cout << "========================================\n";
-        cin >> option;
+        cout << "Select an option: ";
+
+        while (!(cin >> option)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input! Enter a number between 0 and 6: ";
+        }
         switch (option) {
+            case 0: {
+                int truckNumber = getIntValue("Enter Truck number: ");
+                cout << "Truck number: " << truckNumber << endl;
+                break;
+            }
             case 1:
                 cout << "WIP" << endl;
                 break;
