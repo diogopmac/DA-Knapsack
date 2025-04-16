@@ -62,8 +62,7 @@ void DataReader::readPallets(const std::string& fileName, Truck& truck) {
         id = stoi(idStr);
         weight = stod(weightStr);
         value = stod(valueStr);
-
-        cout << id << " " << weight << " " << value << endl;
+        
         pallets.push_back(new Pallet(id, weight, value));
     }
     truck.setPallets(pallets);
