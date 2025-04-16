@@ -72,8 +72,8 @@ void Menu::MainMenu() {
         switch (option) {
             case 0: {
                 const int truckNumber = getIntValue("Enter Truck number: ");
-                reader.readTrucks("../docs/TruckAndPallets_" + to_string(truckNumber) + ".csv", truck);
-                reader.readPallets("../docs/Pallets_" + to_string(truckNumber) + ".csv", truck);
+                reader.readTrucks("../docs/TruckAndPallets_0" + to_string(truckNumber) + ".csv", truck);
+                reader.readPallets("../docs/Pallets_0" + to_string(truckNumber) + ".csv", truck);
                 break;
             }
             case 1: {
