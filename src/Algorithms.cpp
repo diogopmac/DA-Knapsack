@@ -1,9 +1,32 @@
 #include "../headers/Algorithms.h"
+#include <cmath>
+#include <bitset>
 
 using namespace std;
 
-vector<Pallet *> brute_force(Truck& truck) {
+vector<Pallet *> brute_force(const Truck& truck) {
     vector<Pallet *> sol;
+
+    vector<Pallet *> pallets = truck.getPallets();
+    int n = pallets.size();
+
+    double maxvalue = 0;
+
+    for (int i = 0; i < pow(2, n); i++) {
+        bitset<20> binarySubset(i);
+        double value = 0;
+        double weight = 0;
+        for (int k = 0; k < n; k++) {
+            value += pallets[k]->getValue() * binarySubset[k];
+            weight += pallets[k]->getWeight() * binarySubset[k];
+        }
+        if (value > maxvalue && weight <= truck.getCapacity()) {
+            maxvalue = value;
+            for (int k = 0; k < n; k++) {
+                if (binarySubset[k]) sol.push_back(pallets[k]);
+            }
+        }
+    }
     return sol;
 }
 
