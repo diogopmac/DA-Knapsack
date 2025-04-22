@@ -45,6 +45,18 @@ void Menu::truckInformation() {
     }
 }
 
+int Menu::loadTruck() {
+    const int truckNumber = getIntValue("Enter Truck number: ");
+    if (reader.readTrucks(
+        ((truckNumber < 10)  ? "../docs/TruckAndPallets_0" : "../docs/TruckAndPallets_") +
+        to_string(truckNumber) + ".csv", truck)
+        ||
+        reader.readPallets(
+        ((truckNumber < 10 ) ? "../docs/Pallets_0" : "../docs/Pallets_") +
+        to_string(truckNumber) + ".csv", truck)!= 0) return 1;
+    truck.setId(truckNumber);
+    return 0;
+}
 
 
 void Menu::MainMenu() {
@@ -71,14 +83,11 @@ void Menu::MainMenu() {
         }
         switch (option) {
             case 0: {
-                const int truckNumber = getIntValue("Enter Truck number: ");
-                truck.setId(truckNumber);
-                reader.readTrucks(
-                    ((truckNumber < 10)  ? "../docs/TruckAndPallets_0" : "../docs/TruckAndPallets_") +
-                    to_string(truckNumber) + ".csv", truck);
-                reader.readPallets(
-                    ((truckNumber < 10 ) ? "../docs/Pallets_0" : "../docs/Pallets_") +
-                    to_string(truckNumber) + ".csv", truck);
+                while (loadTruck() != 0) {
+                    cout << "No such truck!" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
                 break;
             }
             case 1: {
