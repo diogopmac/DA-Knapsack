@@ -6,7 +6,7 @@
 
 
 Truck::Truck() = default;
-Truck::Truck(int id, double capacity, int numPallets, std::vector<Pallet *> pallets) : capacity(capacity), numPallets(numPallets), pallets(pallets) {}
+Truck::Truck(int id, double capacity, int numPallets, std::vector<Pallet *> pallets) : id(id), capacity(capacity), numPallets(numPallets), pallets(pallets) {}
 Truck::~Truck() = default;
 
 int Truck::getId() const {
