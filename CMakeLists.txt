@@ -7,4 +7,5 @@ add_executable(project2 src/main.cpp
         src/menu.cpp
         data_structures/pallet.cpp
         data_structures/truck.cpp
-        src/DataReader.cpp)
+        src/DataReader.cpp
+        src/Algorithms.cpp)
