@@ -4,7 +4,11 @@
 
 using namespace std;
 
-vector<Pallet *> brute_force(const Truck& truck) {
+Algorithms::Algorithms() = default;
+
+Algorithms::~Algorithms() = default;
+
+std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
     vector<Pallet *> sol;
 
     vector<Pallet *> pallets = truck.getPallets();
@@ -30,17 +34,18 @@ vector<Pallet *> brute_force(const Truck& truck) {
     return sol;
 }
 
-vector<Pallet *> dynamic_program(Truck& truck) {
+
+std::vector<Pallet *> Algorithms::dynamic_program(const Truck& truck) {
     vector<Pallet *> sol;
     return sol;
 }
 
-vector<Pallet *> approximation(Truck& truck) {
+std::vector<Pallet *> Algorithms::approximation(const Truck& truck) {
     vector<Pallet *> sol;
     return sol;
 }
 
-vector<Pallet *> int_linear_program(Truck& truck) {
+vector<Pallet *> Algorithms::int_linear_program(const Truck& truck) {
     vector<Pallet *> sol;
     return sol;
 }
