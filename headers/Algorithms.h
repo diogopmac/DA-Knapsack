@@ -1,5 +1,5 @@
-#ifndef ALGORTIHMS_H
-#define ALGORTIHMS_H
+#ifndef ALGORITHMS_H
+#define ALGORITHMS_H
 #include <string>
 
 #include "../data_structures/truck.h"
