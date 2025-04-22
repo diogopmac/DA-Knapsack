@@ -7,18 +7,21 @@
 class Truck {
   public:
     Truck();
-    Truck(double capacity, int numPallets, std::vector<Pallet *> pallets);
+    Truck(int id, double capacity, int numPallets, std::vector<Pallet *> pallets);
     ~Truck();
 
+    int getId() const;
     double getCapacity() const;
     int getNumPallets() const;
     std::vector<Pallet *> getPallets() const;
 
+    void setId(int id);
     void setCapacity(double capacity);
     void setNumPallets(int numPallets);
     void setPallets(std::vector<Pallet *> pallets);
 
   private:
+    int id;
     double capacity{};
     int numPallets{};
     std::vector<Pallet *> pallets;

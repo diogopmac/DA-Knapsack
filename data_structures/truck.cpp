@@ -6,8 +6,12 @@
 
 
 Truck::Truck() = default;
-Truck::Truck(double capacity, int numPallets, std::vector<Pallet *> pallets) : capacity(capacity), numPallets(numPallets), pallets(pallets) {}
+Truck::Truck(int id, double capacity, int numPallets, std::vector<Pallet *> pallets) : capacity(capacity), numPallets(numPallets), pallets(pallets) {}
 Truck::~Truck() = default;
+
+int Truck::getId() const {
+    return id;
+}
 
 double Truck::getCapacity() const {
     return capacity;
@@ -19,6 +23,10 @@ int Truck::getNumPallets() const {
 
 std::vector<Pallet *> Truck::getPallets() const {
     return pallets;
+}
+
+void Truck::setId(int id) {
+    this->id = id;
 }
 
 void Truck::setCapacity(double capacity) {
