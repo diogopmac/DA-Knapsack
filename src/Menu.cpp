@@ -31,7 +31,7 @@ void Menu::truckInformation() {
     }
     else {
         cout << "========================================\n";
-        cout << "Currently loaded Truck: \n";
+        cout << "Currently loaded Truck: " << truck.getId() << " \n";
         cout << "Truck capacity: " << truck.getCapacity() << endl;
         cout << "Pallets loaded: " << truck.getPallets().size() << endl;
 
@@ -72,8 +72,13 @@ void Menu::MainMenu() {
         switch (option) {
             case 0: {
                 const int truckNumber = getIntValue("Enter Truck number: ");
-                reader.readTrucks("../docs/TruckAndPallets_0" + to_string(truckNumber) + ".csv", truck);
-                reader.readPallets("../docs/Pallets_0" + to_string(truckNumber) + ".csv", truck);
+                truck.setId(truckNumber);
+                reader.readTrucks(
+                    ((truckNumber < 10)  ? "../docs/TruckAndPallets_0" : "../docs/TruckAndPallets_") +
+                    to_string(truckNumber) + ".csv", truck);
+                reader.readPallets(
+                    ((truckNumber < 10 ) ? "../docs/Pallets_0" : "../docs/Pallets_") +
+                    to_string(truckNumber) + ".csv", truck);
                 break;
             }
             case 1: {
