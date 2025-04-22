@@ -25,6 +25,11 @@ std::vector<Pallet *> Truck::getPallets() const {
     return pallets;
 }
 
+bool Truck::isLoaded() const {
+    return !this->getPallets().empty();
+}
+
+
 void Truck::setId(int id) {
     this->id = id;
 }

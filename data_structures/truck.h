@@ -14,6 +14,7 @@ class Truck {
     double getCapacity() const;
     int getNumPallets() const;
     std::vector<Pallet *> getPallets() const;
+    bool isLoaded() const;
 
     void setId(int id);
     void setCapacity(double capacity);
