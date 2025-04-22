@@ -17,7 +17,7 @@ std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
     double maxvalue = 0;
 
     for (int i = 0; i < pow(2, n); i++) {
-        bitset<20> binarySubset(i);
+        bitset<n> binarySubset(i);
         double value = 0;
         double weight = 0;
         for (int k = 0; k < n; k++) {
