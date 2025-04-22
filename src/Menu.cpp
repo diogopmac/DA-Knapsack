@@ -53,7 +53,7 @@ int Menu::loadTruck() {
         ||
         reader.readPallets(
         ((truckNumber < 10 ) ? "../docs/Pallets_0" : "../docs/Pallets_") +
-        to_string(truckNumber) + ".csv", truck)!= 0) return 1;
+        to_string(truckNumber) + ".csv", truck) != 0) return 1;
     truck.setId(truckNumber);
     return 0;
 }
