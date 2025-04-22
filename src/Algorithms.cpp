@@ -26,6 +26,7 @@ std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
         }
         if (value > maxvalue && weight <= truck.getCapacity()) {
             maxvalue = value;
+            sol = {};
             for (int k = 0; k < n; k++) {
                 if (binarySubset[k]) sol.push_back(pallets[k]);
             }
