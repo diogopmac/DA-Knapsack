@@ -3,9 +3,11 @@ project(project2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(project2 src/main.cpp
-        src/menu.cpp
+add_executable(project2
+        src/main.cpp
+        src/Menu.cpp
         data_structures/pallet.cpp
         data_structures/truck.cpp
         src/DataReader.cpp
-        src/Algorithms.cpp)
+        src/Algorithms.cpp
+)
