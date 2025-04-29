@@ -66,10 +66,15 @@ void Menu::BruteForceMenu() {
 
     vector<Pallet *> solution = solver.brute_force(truck);
 
-    for (auto p : solution) {
-        cout << endl;
-        cout << "Pallet number: " << p->getId() << endl;
-        cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
+    if (solution.empty()) {
+        cout << "Input too big! No solution found!" << endl;
+    }
+    else {
+        for (auto p : solution) {
+            cout << endl;
+            cout << "Pallet number: " << p->getId() << endl;
+            cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
+        }
     }
 }
 

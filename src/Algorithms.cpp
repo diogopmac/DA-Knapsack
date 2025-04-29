@@ -11,10 +11,11 @@ Algorithms::Algorithms() = default;
 Algorithms::~Algorithms() = default;
 
 std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
-    vector<Pallet *> sol;
-
     vector<Pallet *> pallets = truck.getPallets();
     int n = pallets.size();
+    if (n > 29) return {};
+
+    vector<Pallet *> sol;
 
     double maxvalue = 0;
 
