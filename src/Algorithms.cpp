@@ -13,14 +13,14 @@ Algorithms::~Algorithms() = default;
 std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
     vector<Pallet *> pallets = truck.getPallets();
     int n = pallets.size();
-    if (n > 29) return {};
+    if (n > 32) return {};
 
     vector<Pallet *> sol;
 
     double maxvalue = 0;
 
     for (int i = 0; i < (1 << n); i++) {
-        bitset<64> binarySubset(i);
+        bitset<32> binarySubset(i);
         double value = 0;
         double weight = 0;
         for (int k = 0; k < n; k++) {
