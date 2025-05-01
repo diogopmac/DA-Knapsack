@@ -14,4 +14,4 @@ class Algorithms {
     std::vector<Pallet *> int_linear_program(const Truck& truck);
 };
 
-#endif //ALGORIHMS_H
+#endif //ALGORITHMS_H
