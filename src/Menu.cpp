@@ -58,6 +58,27 @@ int Menu::loadTruck() {
     return 0;
 }
 
+void Menu::BruteForceMenu() {
+    if (!truck.isLoaded()) {
+        cout << "No truck loaded!" << endl;
+        return;
+    }
+
+    vector<Pallet *> solution = solver.brute_force(truck);
+
+    if (solution.empty()) {
+        cout << "Input too big! No solution found!" << endl;
+    }
+    else {
+        for (auto p : solution) {
+            cout << endl;
+            cout << "Pallet number: " << p->getId() << endl;
+            cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
+        }
+    }
+}
+
+
 
 void Menu::MainMenu() {
     int option;
@@ -95,7 +116,7 @@ void Menu::MainMenu() {
                 break;
             }
             case 2:
-                cout << "WIP" << endl;
+                BruteForceMenu();
                 break;
             case 3:
                 cout << "WIP" << endl;

@@ -8,10 +8,10 @@ class Algorithms {
     public:
     Algorithms();
     ~Algorithms();
-    std::vector<Pallet *> brute_force(Truck& truck);
-    std::vector<Pallet *> dynamic_program(Truck& truck);
-    std::vector<Pallet *> approximation(Truck& truck);
-    std::vector<Pallet *> int_linear_program(Truck& truck);
+    std::vector<Pallet *> brute_force(const Truck& truck);
+    std::vector<Pallet *> dynamic_program(const Truck& truck);
+    std::vector<Pallet *> approximation(const Truck& truck);
+    std::vector<Pallet *> int_linear_program(const Truck& truck);
 };
 
-#endif //ALGORTIHMS_H
+#endif //ALGORITHMS_H
