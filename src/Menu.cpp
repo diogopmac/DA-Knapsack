@@ -64,9 +64,12 @@ void Menu::BruteForceMenu() {
         return;
     }
 
-    int backtracking = getIntValue("Select option:\n"
+    int backtracking = 0;
+    while (backtracking != 1 && backtracking != 2) {
+        backtracking = getIntValue("Select option:\n"
                                    "[1] Brute Force\n"
                                    "[2] Backtracking\n");
+    }
 
     vector<Pallet *> solution;
 
