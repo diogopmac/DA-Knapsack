@@ -8,7 +8,9 @@ class Algorithms {
     public:
     Algorithms();
     ~Algorithms();
+
     std::vector<Pallet *> brute_force(const Truck& truck);
+    std::vector<Pallet *> backtracking(const Truck& truck);
     std::vector<Pallet *> dynamic_program(const Truck& truck);
     std::vector<Pallet *> approximation(const Truck& truck);
     std::vector<Pallet *> int_linear_program(const Truck& truck);
