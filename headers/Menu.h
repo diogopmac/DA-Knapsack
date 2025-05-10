@@ -13,9 +13,12 @@ class Menu {
   public:
     Menu();
     ~Menu();
+
     void MainMenu();
     void BruteForceMenu();
+
     int getIntValue(const std::string &s);
+
     void truckInformation();
     int loadTruck();
     void waitForEnter();

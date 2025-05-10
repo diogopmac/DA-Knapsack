@@ -38,6 +38,11 @@ std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
     return sol;
 }
 
+std::vector<Pallet *> Algorithms::backtracking(const Truck& truck) {
+    // TODO
+    return {};
+}
+
 
 std::vector<Pallet *> Algorithms::dynamic_program(const Truck& truck) {
     vector<Pallet *> sol;
