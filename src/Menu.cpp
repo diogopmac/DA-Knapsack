@@ -11,7 +11,7 @@ using namespace std;
 
 Menu::Menu() = default;
 
-Menu::~Menu() {}
+Menu::~Menu() = default;
 
 int Menu::getIntValue(const string &s) {
     int ret;
