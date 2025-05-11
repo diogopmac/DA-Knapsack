@@ -12,7 +12,7 @@ using namespace std;
 
 Menu::Menu() = default;
 
-Menu::~Menu() {}
+Menu::~Menu() = default;
 
 void Menu::waitForEnter() {
     cout << "Press Enter to continue...";
