@@ -94,6 +94,26 @@ void Menu::BruteForceMenu() {
     }
 }
 
+void Menu::ApproximationMenu() {
+    if (!truck.isLoaded()) {
+        cout << "No truck loaded!" << endl;
+        return;
+    }
+
+    vector<Pallet *> solution = solver.approximation(truck);
+
+    if (solution.empty()) {
+        cout << "Input too big! No solution found!" << endl;
+    } else {
+        for (auto p : solution) {
+            cout << endl;
+            cout << "Pallet number: " << p->getId() << endl;
+            cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
+        }
+    }
+}
+
+
 
 
 void Menu::MainMenu() {
@@ -138,10 +158,11 @@ void Menu::MainMenu() {
                 waitForEnter();
                 break;
             case 3:
-                solver.approximation_by_value(truck);
+                cout << "WIP" << endl;
                 break;
             case 4:
-                cout << "WIP" << endl;
+                ApproximationMenu();
+                waitForEnter();
                 break;
             case 5:
                 cout << "WIP" << endl;

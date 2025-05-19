@@ -17,6 +17,13 @@ bool sortByValue(Pallet* a, Pallet* b) {
     return a->getValue() > b->getValue();
 }
 
+bool sortByRatio(Pallet* a, Pallet* b) {
+    if (a->getRatio() == b->getRatio()) {
+        return a->getWeight() > b->getWeight();
+    }
+    return a->getRatio() > b->getRatio();
+}
+
 std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
     vector<Pallet *> pallets = truck.getPallets();
     int n = pallets.size();
@@ -71,7 +78,26 @@ std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_value(cons
 }
 
 std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_ratio(const Truck& truck) {
-    return {};
+    double value = 0;
+    double weight = 0;
+    int index = 0;
+
+    vector<Pallet *> pallets = truck.getPallets();
+    ranges::sort(pallets, sortByRatio);
+
+    vector<Pallet *> sol;
+
+    while (weight <= truck.getCapacity() && index <= pallets.size()-1) {
+        cout << index << endl;
+        if (pallets[index]->getWeight() + weight <= truck.getCapacity()) {
+            sol.push_back(pallets[index]);
+            weight += pallets[index]->getWeight();
+            value += pallets[index]->getValue();
+        }
+        index++;
+    }
+
+    return std::make_pair(sol, value);
 }
 
 std::vector<Pallet *> Algorithms::dynamic_program(const Truck& truck) {
@@ -80,8 +106,10 @@ std::vector<Pallet *> Algorithms::dynamic_program(const Truck& truck) {
 }
 
 std::vector<Pallet *> Algorithms::approximation(const Truck& truck) {
-    vector<Pallet *> sol;
-    return sol;
+    pair<vector<Pallet *>, double> sol_value = approximation_by_value(truck);
+    pair<vector<Pallet *>, double> sol_ratio = approximation_by_ratio(truck);
+
+    return sol_value.second > sol_ratio.second ? sol_value.first : sol_ratio.first;
 }
 
 vector<Pallet *> Algorithms::int_linear_program(const Truck& truck) {
