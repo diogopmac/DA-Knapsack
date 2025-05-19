@@ -10,7 +10,7 @@ Algorithms::Algorithms() = default;
 
 Algorithms::~Algorithms() = default;
 
-bool comp(Pallet* a, Pallet* b) {
+bool sortByValue(Pallet* a, Pallet* b) {
     if (a->getValue() == b->getValue()) {
         return a->getWeight() < b->getWeight();
     }
@@ -45,20 +45,32 @@ std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
     return sol;
 }
 
-std::vector<Pallet *> Algorithms::approximation_by_value(const Truck& truck) {
+std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_value(const Truck& truck) {
     double value = 0;
     double weight = 0;
+    int index = 0;
 
     vector<Pallet *> pallets = truck.getPallets();
-    sort(pallets.begin(), pallets.end(), comp);
+    ranges::sort(pallets, sortByValue);
 
-    for (int i = 0; i < pallets.size(); i++) {
-        cout << pallets[i]->getValue() << " " << pallets[i]->getWeight() << endl;
+    vector<Pallet *> sol;
+
+    cout << pallets.size() << endl;
+
+    while (weight <= truck.getCapacity() && index <= pallets.size()-1) {
+        cout << index << endl;
+        if (pallets[index]->getWeight() + weight <= truck.getCapacity()) {
+            sol.push_back(pallets[index]);
+            weight += pallets[index]->getWeight();
+            value += pallets[index]->getValue();
+        }
+        index++;
     }
-    return pallets;
+
+    return std::make_pair(sol, value);
 }
 
-std::vector<Pallet *> Algorithms::approximation_by_ratio(const Truck& truck) {
+std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_ratio(const Truck& truck) {
     return {};
 }
 
