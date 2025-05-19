@@ -165,7 +165,7 @@ void Menu::MainMenu() {
                 waitForEnter();
                 break;
             case 3:
-                cout << "WIP" << endl;
+                solver.dynamic_program(truck);
                 break;
             case 4:
                 ApproximationMenu();
