@@ -15,7 +15,7 @@ Menu::Menu() = default;
 Menu::~Menu() {}
 
 void Menu::waitForEnter() {
-    cout << "Press any key to continue...";
+    cout << "Press Enter to continue...";
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     string input;
@@ -126,7 +126,6 @@ void Menu::MainMenu() {
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
                 waitForEnter();
-                clearScreen();
                 break;
             }
             case 1: {
