@@ -6,12 +6,28 @@
 
 #include <iostream>
 #include <ostream>
+#include <limits>
 
 using namespace std;
 
 Menu::Menu() = default;
 
 Menu::~Menu() {}
+
+void Menu::waitForEnter() {
+    cout << "Press Enter to continue...";
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    string input;
+    getline(cin, input);
+
+    clearScreen();
+}
+
+void Menu::clearScreen() {
+    for (int i = 0; i<8; i++) cout << endl;
+}
+
 
 int Menu::getIntValue(const string &s) {
     int ret;
@@ -109,14 +125,17 @@ void Menu::MainMenu() {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
+                waitForEnter();
                 break;
             }
             case 1: {
                 truckInformation();
+                waitForEnter();
                 break;
             }
             case 2:
                 BruteForceMenu();
+                waitForEnter();
                 break;
             case 3:
                 cout << "WIP" << endl;

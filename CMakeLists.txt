@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.29)
 project(project2)
 
 set(CMAKE_CXX_STANDARD 20)
+#set(SOURCE CMAKE_SOURCE_DIR)
 
 add_executable(project2
         src/main.cpp
@@ -11,3 +12,5 @@ add_executable(project2
         src/DataReader.cpp
         src/Algorithms.cpp
 )
+
+#target_include_directories(project2 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
