@@ -13,6 +13,19 @@ Menu::Menu() = default;
 
 Menu::~Menu() {}
 
+void Menu::waitForEnter() {
+    cout << "Press any key to continue...";
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    string input;
+    getline(cin, input);
+}
+
+void Menu::clearScreen() {
+    system("clear");
+}
+
+
 int Menu::getIntValue(const string &s) {
     int ret;
     while (true) {
@@ -109,14 +122,20 @@ void Menu::MainMenu() {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
+                waitForEnter();
+                clearScreen();
                 break;
             }
             case 1: {
                 truckInformation();
+                waitForEnter();
+                clearScreen();
                 break;
             }
             case 2:
                 BruteForceMenu();
+                waitForEnter();
+                clearScreen();
                 break;
             case 3:
                 cout << "WIP" << endl;
