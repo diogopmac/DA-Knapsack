@@ -10,6 +10,8 @@ class Algorithms {
     ~Algorithms();
     std::vector<Pallet *> brute_force(const Truck& truck);
     std::vector<Pallet *> dynamic_program(const Truck& truck);
+    std::vector<Pallet *> approximation_by_value(const Truck& truck);
+    std::vector<Pallet *> approximation_by_ratio(const Truck& truck);
     std::vector<Pallet *> approximation(const Truck& truck);
     std::vector<Pallet *> int_linear_program(const Truck& truck);
 };

@@ -138,7 +138,7 @@ void Menu::MainMenu() {
                 waitForEnter();
                 break;
             case 3:
-                cout << "WIP" << endl;
+                solver.approximation_by_value(truck);
                 break;
             case 4:
                 cout << "WIP" << endl;
