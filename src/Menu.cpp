@@ -86,6 +86,7 @@ void Menu::BruteForceMenu() {
                                    "[1] Brute Force\n"
                                    "[2] Backtracking\n");
     }
+    
 
     vector<Pallet *> solution;
 
