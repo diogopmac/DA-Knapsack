@@ -20,10 +20,12 @@ void Menu::waitForEnter() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     string input;
     getline(cin, input);
+
+    clearScreen();
 }
 
 void Menu::clearScreen() {
-    system("clear");
+    for (int i = 0; i<8; i++) cout << endl;
 }
 
 
@@ -130,13 +132,11 @@ void Menu::MainMenu() {
             case 1: {
                 truckInformation();
                 waitForEnter();
-                clearScreen();
                 break;
             }
             case 2:
                 BruteForceMenu();
                 waitForEnter();
-                clearScreen();
                 break;
             case 3:
                 cout << "WIP" << endl;
