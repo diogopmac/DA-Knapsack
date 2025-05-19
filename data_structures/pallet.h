@@ -8,6 +8,7 @@ class Pallet{
         int getId() const;
         double getWeight() const;
         double getValue() const;
+        double getRatio() const;
     private:
         int id;
         double weight;
