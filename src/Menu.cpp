@@ -86,11 +86,13 @@ void Menu::BruteForceMenu() {
         cout << "Input too big! No solution found!" << endl;
     }
     else {
+        cout << "========================================\n";
         for (auto p : solution) {
             cout << endl;
             cout << "Pallet number: " << p->getId() << endl;
             cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
         }
+        cout << "========================================\n";
     }
 }
 
@@ -100,7 +102,11 @@ void Menu::ApproximationMenu() {
         return;
     }
 
+    cout << "========================================\n";
+
     vector<Pallet *> solution = solver.approximation(truck);
+
+    cout << "========================================\n";
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
@@ -110,6 +116,7 @@ void Menu::ApproximationMenu() {
             cout << "Pallet number: " << p->getId() << endl;
             cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
         }
+        cout << "========================================\n";
     }
 }
 

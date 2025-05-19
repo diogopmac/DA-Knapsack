@@ -52,7 +52,7 @@ std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
     return sol;
 }
 
-std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_value(const Truck& truck) {
+std::pair<std::vector<Pallet *>, std::pair<double, double>>  Algorithms::approximation_by_value(const Truck& truck) {
     double value = 0;
     double weight = 0;
     int index = 0;
@@ -62,10 +62,7 @@ std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_value(cons
 
     vector<Pallet *> sol;
 
-    cout << pallets.size() << endl;
-
     while (weight <= truck.getCapacity() && index <= pallets.size()-1) {
-        cout << index << endl;
         if (pallets[index]->getWeight() + weight <= truck.getCapacity()) {
             sol.push_back(pallets[index]);
             weight += pallets[index]->getWeight();
@@ -74,10 +71,10 @@ std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_value(cons
         index++;
     }
 
-    return std::make_pair(sol, value);
+    return std::make_pair(sol, std::make_pair(weight, value));
 }
 
-std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_ratio(const Truck& truck) {
+std::pair<std::vector<Pallet *>, std::pair<double, double>> Algorithms::approximation_by_ratio(const Truck& truck) {
     double value = 0;
     double weight = 0;
     int index = 0;
@@ -88,7 +85,6 @@ std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_ratio(cons
     vector<Pallet *> sol;
 
     while (weight <= truck.getCapacity() && index <= pallets.size()-1) {
-        cout << index << endl;
         if (pallets[index]->getWeight() + weight <= truck.getCapacity()) {
             sol.push_back(pallets[index]);
             weight += pallets[index]->getWeight();
@@ -97,7 +93,7 @@ std::pair<std::vector<Pallet *>, double> Algorithms::approximation_by_ratio(cons
         index++;
     }
 
-    return std::make_pair(sol, value);
+    return std::make_pair(sol, std::make_pair(weight, value));
 }
 
 std::vector<Pallet *> Algorithms::dynamic_program(const Truck& truck) {
@@ -106,8 +102,13 @@ std::vector<Pallet *> Algorithms::dynamic_program(const Truck& truck) {
 }
 
 std::vector<Pallet *> Algorithms::approximation(const Truck& truck) {
-    pair<vector<Pallet *>, double> sol_value = approximation_by_value(truck);
-    pair<vector<Pallet *>, double> sol_ratio = approximation_by_ratio(truck);
+    pair<vector<Pallet *>, pair<double, double>> sol_value = approximation_by_value(truck);
+    pair<vector<Pallet *>, pair<double, double>> sol_ratio = approximation_by_ratio(truck);
+
+    cout << "Solution 1 (Select by Value):\n"
+            "Weight used: " <<  sol_value.second.first << " Value obtained: " <<  sol_value.second.second << endl;
+    cout << "Solution 2 (Select by Ratio):\n"
+            "Weight used: " << sol_ratio.second.first << " Value obtained: " << sol_ratio.second.second << endl;
 
     return sol_value.second > sol_ratio.second ? sol_value.first : sol_ratio.first;
 }
