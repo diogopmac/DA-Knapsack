@@ -84,7 +84,7 @@ std::pair<std::vector<Pallet *>, std::pair<double, double>> Algorithms::approxim
 
     vector<Pallet *> sol;
 
-    while (weight <= truck.getCapacity() && index <= pallets.size()-1) {
+    while (weight <= truck.getCapacity() && index < pallets.size()) {
         if (pallets[index]->getWeight() + weight <= truck.getCapacity()) {
             sol.push_back(pallets[index]);
             weight += pallets[index]->getWeight();
