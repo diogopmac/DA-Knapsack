@@ -100,11 +100,11 @@ std::vector<Pallet *> Algorithms::dynamic_program(const Truck& truck) {
     vector<Pallet *> sol;
     vector<Pallet *> pallets = truck.getPallets();
 
-    std::vector dp(truck.getPallets().size()+1,
+    std::vector dp(pallets.size()+1,
                                     std::vector<double>(truck.getCapacity()+1, 0));
 
 
-    for (int i = 1; i < truck.getPallets().size()+1; i++) {
+    for (int i = 1; i < pallets.size()+1; i++) {
         for (int j = 1; j < truck.getCapacity()+1; j++) {
             double option1 = dp[i-1][j];
             double option2 = 0;
