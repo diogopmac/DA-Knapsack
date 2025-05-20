@@ -98,6 +98,32 @@ std::pair<std::vector<Pallet *>, std::pair<double, double>> Algorithms::approxim
 
 std::vector<Pallet *> Algorithms::dynamic_program(const Truck& truck) {
     vector<Pallet *> sol;
+    vector<Pallet *> pallets = truck.getPallets();
+
+    std::vector dp(pallets.size()+1,
+                                    std::vector<double>(truck.getCapacity()+1, 0));
+
+
+    for (int i = 1; i < pallets.size()+1; i++) {
+        for (int j = 1; j < truck.getCapacity()+1; j++) {
+            double option1 = dp[i-1][j];
+            double option2 = 0;
+            if (j - pallets[i-1]->getWeight() >= 0) option2 = dp[i-1][j - pallets[i-1]->getWeight()] + pallets[i-1]->getValue();
+            dp[i][j] = max(option1, option2);
+        }
+    }
+
+    int i = pallets.size();
+    int j = truck.getCapacity();
+
+    while (i > 0 && j > 0) {
+        if (dp[i][j] != dp[i-1][j]) {
+            sol.push_back(pallets[i-1]);
+            j -= pallets[i-1]->getWeight();
+        }
+        i--;
+    }
+
     return sol;
 }
 
