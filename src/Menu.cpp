@@ -96,6 +96,28 @@ void Menu::BruteForceMenu() {
     }
 }
 
+void Menu::DynamicProgrammingMenu() {
+    if (!truck.isLoaded()) {
+        cout << "No truck loaded!" << endl;
+        return;
+    }
+
+    vector<Pallet *> solution = solver.dynamic_program(truck);
+
+    if (solution.empty()) {
+        cout << "Input too big! No solution found!" << endl;
+    } else {
+        cout << "========================================\n";
+        for (auto p : solution) {
+            cout << endl;
+            cout << "Pallet number: " << p->getId() << endl;
+            cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
+        }
+        cout << "========================================\n";
+    }
+}
+
+
 void Menu::ApproximationMenu() {
     if (!truck.isLoaded()) {
         cout << "No truck loaded!" << endl;
@@ -106,11 +128,10 @@ void Menu::ApproximationMenu() {
 
     vector<Pallet *> solution = solver.approximation(truck);
 
-    cout << "========================================\n";
-
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
     } else {
+        cout << "========================================\n";
         for (auto p : solution) {
             cout << endl;
             cout << "Pallet number: " << p->getId() << endl;
@@ -165,7 +186,8 @@ void Menu::MainMenu() {
                 waitForEnter();
                 break;
             case 3:
-                solver.dynamic_program(truck);
+                DynamicProgrammingMenu();
+                waitForEnter();
                 break;
             case 4:
                 ApproximationMenu();

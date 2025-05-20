@@ -107,20 +107,23 @@ std::vector<Pallet *> Algorithms::dynamic_program(const Truck& truck) {
     for (int i = 1; i < truck.getPallets().size()+1; i++) {
         for (int j = 1; j < truck.getCapacity()+1; j++) {
             double option1 = dp[i-1][j];
-            cout << "Current cell: i: " << i << ", j: " << j << endl;
             double option2 = 0;
             if (j - pallets[i-1]->getWeight() >= 0) option2 = dp[i-1][j - pallets[i-1]->getWeight()] + pallets[i-1]->getValue();
             dp[i][j] = max(option1, option2);
         }
-        cout << endl;
     }
 
-    for (int i = 0; i < truck.getPallets().size()+1; i++) {
-        for (int j = 0; j < truck.getCapacity()+1; j++) {
-            cout << dp[i][j] << " ";
+    int i = pallets.size();
+    int j = truck.getCapacity();
+
+    while (i > 0 && j > 0) {
+        if (dp[i][j] != dp[i-1][j]) {
+            sol.push_back(pallets[i-1]);
+            j -= pallets[i-1]->getWeight();
         }
-        cout << endl;
+        i--;
     }
+
     return sol;
 }
 
