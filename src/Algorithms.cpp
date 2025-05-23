@@ -3,6 +3,9 @@
 #include <bitset>
 #include <iostream>
 #include <ostream>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -141,5 +144,60 @@ std::vector<Pallet *> Algorithms::approximation(const Truck& truck) {
 
 vector<Pallet *> Algorithms::int_linear_program(const Truck& truck) {
     vector<Pallet *> sol;
+    ofstream outfile("../docs/input.txt");
+    if (!outfile.is_open()) {
+        cerr << "Unable to open file \"../docs/input.txt\"" << endl;
+        return sol;
+    }
+    outfile << truck.getNumPallets() << "\n";
+    outfile << truck.getCapacity() << "\n";
+
+    auto pallets = truck.getPallets();
+    for (auto i = 0; i < pallets.size(); ++i) {
+        outfile << pallets[i]->getWeight();
+        if (i != pallets.size() - 1) outfile << " ";
+        else outfile << "\n";
+    }
+
+    for (size_t i = 0; i < pallets.size(); ++i) {
+        outfile << pallets[i]->getValue();
+        if (i != pallets.size() - 1) outfile << " ";
+        else outfile << "\n";
+    }
+
+    outfile.close();
+
+    int ret = system("python3 ../docs/knapsack_solver.py input.txt output.txt");
+
+    if (ret != 0) {
+        std::cerr << "Unable to run knapsack_solver.py (" << ret << ")" << std::endl;
+        return sol;
+    }
+
+    std::ifstream infile("output.txt");
+    if (!infile.is_open()) {
+        std::cerr << "Unable to open file \"../docs/output.txt\"" << std::endl;
+        return sol;
+    }
+
+    std::vector<int> selected;
+    std::string line;
+
+    std::getline(infile, line);
+    std::getline(infile, line);
+
+    if (std::getline(infile, line)) {
+        std::istringstream iss(line);
+        int index;
+        while (iss >> index) {
+            selected.push_back(index);
+        }
+    }
+    infile.close();
+
+    for (int idx : selected) {
+        sol.push_back(pallets[idx]);
+    }
+
     return sol;
 }
