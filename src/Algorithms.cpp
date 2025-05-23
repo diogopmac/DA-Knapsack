@@ -167,14 +167,14 @@ vector<Pallet *> Algorithms::int_linear_program(const Truck& truck) {
 
     outfile.close();
 
-    int ret = system("python3 ../docs/knapsack_solver.py input.txt output.txt");
+    int ret = system("../venv/bin/python ../docs/knapsack_solver.py ../docs/input.txt ../docs/output.txt >null");
 
     if (ret != 0) {
         std::cerr << "Unable to run knapsack_solver.py (" << ret << ")" << std::endl;
         return sol;
     }
 
-    std::ifstream infile("output.txt");
+    std::ifstream infile("../docs/output.txt");
     if (!infile.is_open()) {
         std::cerr << "Unable to open file \"../docs/output.txt\"" << std::endl;
         return sol;

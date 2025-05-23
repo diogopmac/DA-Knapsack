@@ -141,6 +141,30 @@ void Menu::ApproximationMenu() {
     }
 }
 
+void Menu::ILPMenu() {
+    if (!truck.isLoaded()) {
+        cout << "No truck loaded!" << endl;
+        return;
+    }
+
+    cout << "========================================\n";
+
+    vector<Pallet *> solution = solver.int_linear_program(truck);
+
+    if (solution.empty()) {
+        cout << "Input too big! No solution found!" << endl;
+    } else {
+        cout << "========================================\n";
+        for (auto p : solution) {
+            cout << endl;
+            cout << "Pallet number: " << p->getId() << endl;
+            cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
+        }
+        cout << "========================================\n";
+    }
+}
+
+
 
 
 
@@ -194,7 +218,8 @@ void Menu::MainMenu() {
                 waitForEnter();
                 break;
             case 5:
-                cout << "WIP" << endl;
+                ILPMenu();
+                waitForEnter();
                 break;
             case 6:
                 cout << "Leaving" << endl;
