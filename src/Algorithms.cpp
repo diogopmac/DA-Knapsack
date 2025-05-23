@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ostream>
 #include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
@@ -81,6 +82,50 @@ std::vector<Pallet *> Algorithms::dp_vector(const Truck& truck) {
         i--;
     }
     std::reverse(sol.begin(), sol.end());
+    return sol;
+}
+
+std::vector<Pallet *> Algorithms::dp_hashmap(const Truck& truck) {
+    vector<Pallet *> sol;
+    vector<Pallet *> pallets = truck.getPallets();
+    int n = pallets.size();
+    int capacity = static_cast<int>(truck.getCapacity());
+
+    vector<unordered_map<int, double>> dp(n + 1);
+
+    dp[0][0] = 0;
+    for (int i = 1; i <= n; i++) {
+        int w = static_cast<int>(pallets[i-1]->getWeight());
+        double v = pallets[i-1]->getValue();
+        for (const auto& [j, val] : dp[i-1]) {
+            if (dp[i].find(j) == dp[i].end() || dp[i][j] < val)
+                dp[i][j] = val;
+            if (j + w <= capacity) {
+                double newVal = val + v;
+                if (dp[i].find(j + w) == dp[i].end() || dp[i][j + w] < newVal)
+                    dp[i][j + w] = newVal;
+            }
+        }
+    }
+
+    int best_weight = 0;
+    double best_value = 0;
+    for (const auto& [j, val] : dp[n]) {
+        if (val > best_value) {
+            best_value = val;
+            best_weight = j;
+        }
+    }
+
+    int i = n, j = best_weight;
+    while (i > 0 && j > 0) {
+        if (dp[i][j] != dp[i-1][j]) {
+            sol.push_back(pallets[i-1]);
+            j -= static_cast<int>(pallets[i-1]->getWeight());
+        }
+        i--;
+    }
+    reverse(sol.begin(), sol.end());
     return sol;
 }
 

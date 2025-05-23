@@ -11,8 +11,7 @@ class Algorithms {
     std::vector<Pallet *> brute_force(const Truck& truck);
 
     std::vector<Pallet *> dp_vector(const Truck& truck);
-    std::vector<Pallet *> dp_matrix(const Truck& truck);
-    std::vector<Pallet *> dp_hash_map(const Truck& truck);
+    std::vector<Pallet *> dp_hashmap(const Truck& truck);
     std::vector<Pallet *> dynamic_program(const Truck& truck);
 
     std::pair<std::vector<Pallet *>, std::pair<double, double>>  approximation_by_value(const Truck& truck);
