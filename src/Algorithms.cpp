@@ -3,6 +3,7 @@
 #include <bitset>
 #include <iostream>
 #include <ostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -58,7 +59,7 @@ std::pair<std::vector<Pallet *>, std::pair<double, double>>  Algorithms::approxi
     int index = 0;
 
     vector<Pallet *> pallets = truck.getPallets();
-    ranges::sort(pallets, sortByValue);
+    std::sort(pallets.begin(), pallets.end(), sortByValue);
 
     vector<Pallet *> sol;
 
@@ -80,7 +81,7 @@ std::pair<std::vector<Pallet *>, std::pair<double, double>> Algorithms::approxim
     int index = 0;
 
     vector<Pallet *> pallets = truck.getPallets();
-    ranges::sort(pallets, sortByRatio);
+    std::sort(pallets.begin(), pallets.end(), sortByRatio);
 
     vector<Pallet *> sol;
 
