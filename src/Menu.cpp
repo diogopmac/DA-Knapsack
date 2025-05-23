@@ -7,8 +7,14 @@
 #include <iostream>
 #include <ostream>
 #include <limits>
+#include <chrono>
 
 using namespace std;
+
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::milliseconds;
+using std::chrono::duration;
 
 Menu::Menu() = default;
 
@@ -80,7 +86,12 @@ void Menu::BruteForceMenu() {
         return;
     }
 
+    auto t1 = high_resolution_clock::now();
     vector<Pallet *> solution = solver.brute_force(truck);
+    auto t2 = high_resolution_clock::now();
+
+    duration<double, std::milli> ms_double = t2 - t1;
+    cout << "Time taken: " << ms_double.count() << " ms" << endl;
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
