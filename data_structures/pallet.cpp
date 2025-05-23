@@ -19,3 +19,7 @@ double Pallet::getWeight() const {
 double Pallet::getValue() const {
     return value;
 }
+
+double Pallet::getRatio() const {
+    return ratio;
+}
