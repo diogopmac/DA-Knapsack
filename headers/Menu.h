@@ -15,8 +15,9 @@ class Menu {
     ~Menu();
     void MainMenu();
     void BruteForceMenu();
-    void ApproximationMenu();
     void DynamicProgrammingMenu();
+    void ApproximationMenu();
+    void ILPMenu();
     int getIntValue(const std::string &s);
     void truckInformation();
     int loadTruck();
