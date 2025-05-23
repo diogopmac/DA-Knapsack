@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ostream>
 #include <functional>
+#include <climits>
 
 using namespace std;
 
@@ -46,15 +47,17 @@ std::vector<Pallet *> Algorithms::backtracking(const Truck& truck) {
 
     vector<Pallet *> bestSolution;
     double maxValue = 0;
+    int minPallets = INT_MAX;
 
     vector<Pallet *> currentSolution;
-    
 
     // Helper recursive function
     function<void(int, double, double)> backtrack = [&](int idx, double currWeight, double currValue) {
         if (idx == n) {
-            if (currValue > maxValue) {
+            if ((currValue > maxValue) ||
+                (currValue == maxValue && currentSolution.size() < minPallets)) {
                 maxValue = currValue;
+                minPallets = currentSolution.size();
                 bestSolution = currentSolution;
             }
             return;
