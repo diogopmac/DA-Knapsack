@@ -80,15 +80,16 @@ std::vector<Pallet *> Algorithms::backtracking(const Truck& truck) {
             return;
         }
 
-        // Exclude current pallet
-        backtrack(idx + 1, currWeight, currValue);
-
+        
         // Include current pallet if it fits
         if (currWeight + pallets[idx]->getWeight() <= capacity) {
             currentSolution.push_back(pallets[idx]);
             backtrack(idx + 1, currWeight + pallets[idx]->getWeight(), currValue + pallets[idx]->getValue());
             currentSolution.pop_back();
         }
+        
+        // Exclude current pallet
+        backtrack(idx + 1, currWeight, currValue);
     };
 
     backtrack(0, 0.0, 0.0);
