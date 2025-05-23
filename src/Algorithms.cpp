@@ -3,6 +3,7 @@
 #include <bitset>
 #include <iostream>
 #include <ostream>
+#include <functional>
 
 using namespace std;
 
@@ -39,8 +40,39 @@ std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
 }
 
 std::vector<Pallet *> Algorithms::backtracking(const Truck& truck) {
-    // TODO
-    return {};
+    const vector<Pallet *> &pallets = truck.getPallets();
+    int n = pallets.size();
+    double capacity = truck.getCapacity();
+
+    vector<Pallet *> bestSolution;
+    double maxValue = 0;
+
+    vector<Pallet *> currentSolution;
+    
+
+    // Helper recursive function
+    function<void(int, double, double)> backtrack = [&](int idx, double currWeight, double currValue) {
+        if (idx == n) {
+            if (currValue > maxValue) {
+                maxValue = currValue;
+                bestSolution = currentSolution;
+            }
+            return;
+        }
+
+        // Exclude current pallet
+        backtrack(idx + 1, currWeight, currValue);
+
+        // Include current pallet if it fits
+        if (currWeight + pallets[idx]->getWeight() <= capacity) {
+            currentSolution.push_back(pallets[idx]);
+            backtrack(idx + 1, currWeight + pallets[idx]->getWeight(), currValue + pallets[idx]->getValue());
+            currentSolution.pop_back();
+        }
+    };
+
+    backtrack(0, 0.0, 0.0);
+    return bestSolution;
 }
 
 
