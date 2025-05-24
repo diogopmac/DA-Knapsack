@@ -3,6 +3,11 @@
 #include <bitset>
 #include <iostream>
 #include <ostream>
+#include <functional>
+#include <climits>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -50,6 +55,45 @@ std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
         }
     }
     return sol;
+}
+
+std::vector<Pallet *> Algorithms::backtracking(const Truck& truck) {
+    const vector<Pallet *> &pallets = truck.getPallets();
+    int n = pallets.size();
+    double capacity = truck.getCapacity();
+
+    vector<Pallet *> bestSolution;
+    double maxValue = 0;
+    int minPallets = INT_MAX;
+
+    vector<Pallet *> currentSolution;
+
+    // Helper recursive function
+    function<void(int, double, double)> backtrack = [&](int idx, double currWeight, double currValue) {
+        if (idx == n) {
+            if ((currValue > maxValue) ||
+                (currValue == maxValue && currentSolution.size() < minPallets)) {
+                maxValue = currValue;
+                minPallets = currentSolution.size();
+                bestSolution = currentSolution;
+            }
+            return;
+        }
+
+        
+        // Include current pallet if it fits
+        if (currWeight + pallets[idx]->getWeight() <= capacity) {
+            currentSolution.push_back(pallets[idx]);
+            backtrack(idx + 1, currWeight + pallets[idx]->getWeight(), currValue + pallets[idx]->getValue());
+            currentSolution.pop_back();
+        }
+        
+        // Exclude current pallet
+        backtrack(idx + 1, currWeight, currValue);
+    };
+
+    backtrack(0, 0.0, 0.0);
+    return bestSolution;
 }
 
 std::pair<std::vector<Pallet *>, std::pair<double, double>>  Algorithms::approximation_by_value(const Truck& truck) {
@@ -141,5 +185,60 @@ std::vector<Pallet *> Algorithms::approximation(const Truck& truck) {
 
 vector<Pallet *> Algorithms::int_linear_program(const Truck& truck) {
     vector<Pallet *> sol;
+    ofstream outfile("../docs/input.txt");
+    if (!outfile.is_open()) {
+        cerr << "Unable to open file \"../docs/input.txt\"" << endl;
+        return sol;
+    }
+    outfile << truck.getNumPallets() << "\n";
+    outfile << truck.getCapacity() << "\n";
+
+    auto pallets = truck.getPallets();
+    for (auto i = 0; i < pallets.size(); ++i) {
+        outfile << pallets[i]->getWeight();
+        if (i != pallets.size() - 1) outfile << " ";
+        else outfile << "\n";
+    }
+
+    for (size_t i = 0; i < pallets.size(); ++i) {
+        outfile << pallets[i]->getValue();
+        if (i != pallets.size() - 1) outfile << " ";
+        else outfile << "\n";
+    }
+
+    outfile.close();
+
+    int ret = system("../venv/bin/python ../docs/knapsack_solver.py ../docs/input.txt ../docs/output.txt >null");
+
+    if (ret != 0) {
+        std::cerr << "Unable to run knapsack_solver.py (" << ret << ")" << std::endl;
+        return sol;
+    }
+
+    std::ifstream infile("../docs/output.txt");
+    if (!infile.is_open()) {
+        std::cerr << "Unable to open file \"../docs/output.txt\"" << std::endl;
+        return sol;
+    }
+
+    std::vector<int> selected;
+    std::string line;
+
+    std::getline(infile, line);
+    std::getline(infile, line);
+
+    if (std::getline(infile, line)) {
+        std::istringstream iss(line);
+        int index;
+        while (iss >> index) {
+            selected.push_back(index);
+        }
+    }
+    infile.close();
+
+    for (int idx : selected) {
+        sol.push_back(pallets[idx]);
+    }
+
     return sol;
 }

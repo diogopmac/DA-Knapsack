@@ -14,7 +14,7 @@ using std::chrono::duration;
 
 Menu::Menu() = default;
 
-Menu::~Menu() {}
+Menu::~Menu() = default;
 
 void Menu::waitForEnter() {
     cout << "Press Enter to continue...";
@@ -82,10 +82,30 @@ void Menu::BruteForceMenu() {
         return;
     }
 
-    auto t1 = high_resolution_clock::now();
-    vector<Pallet *> solution = solver.brute_force(truck);
-    auto t2 = high_resolution_clock::now();
+    int backtracking = 0;
+    while (backtracking != 1 && backtracking != 2) {
+        backtracking = getIntValue("Select option:\n"
+                                   "[1] Brute Force\n"
+                                   "[2] Backtracking\n");
+    }
 
+    vector<Pallet *> solution;
+
+    switch (backtracking) {
+        case 1: {
+            auto t1 = high_resolution_clock::now();
+            solution = solver.brute_force(truck);
+            auto t2 = high_resolution_clock::now();
+            break;
+        }
+        case 2: {
+            auto t1 = high_resolution_clock::now();
+            solution = solver.backtracking(truck);
+            auto t2 = high_resolution_clock::now();
+            break;
+        }
+    }
+  
     duration<double, std::milli> ms_double = t2 - t1;
     cout << "Time taken: " << ms_double.count() << " ms" << endl;
 
@@ -158,6 +178,30 @@ void Menu::ApproximationMenu() {
     }
 }
 
+void Menu::ILPMenu() {
+    if (!truck.isLoaded()) {
+        cout << "No truck loaded!" << endl;
+        return;
+    }
+
+    cout << "========================================\n";
+
+    vector<Pallet *> solution = solver.int_linear_program(truck);
+
+    if (solution.empty()) {
+        cout << "Input too big! No solution found!" << endl;
+    } else {
+        cout << "========================================\n";
+        for (auto p : solution) {
+            cout << endl;
+            cout << "Pallet number: " << p->getId() << endl;
+            cout << "Weight: " << p->getWeight() << " Value: " << p->getValue() << endl;
+        }
+        cout << "========================================\n";
+    }
+}
+
+
 
 
 
@@ -211,7 +255,8 @@ void Menu::MainMenu() {
                 waitForEnter();
                 break;
             case 5:
-                cout << "WIP" << endl;
+                ILPMenu();
+                waitForEnter();
                 break;
             case 6:
                 cout << "Leaving" << endl;
