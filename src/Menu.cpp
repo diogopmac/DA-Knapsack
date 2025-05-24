@@ -12,7 +12,7 @@ using namespace std;
 
 Menu::Menu() = default;
 
-Menu::~Menu() {}
+Menu::~Menu() = default;
 
 void Menu::waitForEnter() {
     cout << "Press Enter to continue...";
@@ -80,7 +80,26 @@ void Menu::BruteForceMenu() {
         return;
     }
 
-    vector<Pallet *> solution = solver.brute_force(truck);
+    int backtracking = 0;
+    while (backtracking != 1 && backtracking != 2) {
+        backtracking = getIntValue("Select option:\n"
+                                   "[1] Brute Force\n"
+                                   "[2] Backtracking\n");
+    }
+
+
+    vector<Pallet *> solution;
+
+    switch (backtracking) {
+        case 1: {
+            solution = solver.brute_force(truck);
+            break;
+        }
+        case 2: {
+            solution = solver.backtracking(truck);
+            break;
+        }
+    }
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
