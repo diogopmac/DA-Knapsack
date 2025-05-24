@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -68,8 +69,16 @@ std::vector<Pallet *> Algorithms::backtracking(const Truck& truck) {
 
     vector<Pallet *> currentSolution;
 
+    // Memoization: key = (idx, currWeight), value = maxValue found so far
+    map<pair<int, int>, double> memo;
+
     // Helper recursive function
     function<void(int, double, double)> backtrack = [&](int idx, double currWeight, double currValue) {
+        int w = static_cast<int>(currWeight * 1000); // scale to avoid floating point issues in memoization
+        auto key = make_pair(idx, w);
+        if (memo.count(key) && memo[key] >= currValue) return;
+        memo[key] = currValue;
+
         if (idx == n) {
             if ((currValue > maxValue) ||
                 (currValue == maxValue && currentSolution.size() < minPallets)) {
@@ -80,14 +89,13 @@ std::vector<Pallet *> Algorithms::backtracking(const Truck& truck) {
             return;
         }
 
-        
         // Include current pallet if it fits
         if (currWeight + pallets[idx]->getWeight() <= capacity) {
             currentSolution.push_back(pallets[idx]);
             backtrack(idx + 1, currWeight + pallets[idx]->getWeight(), currValue + pallets[idx]->getValue());
             currentSolution.pop_back();
         }
-        
+
         // Exclude current pallet
         backtrack(idx + 1, currWeight, currValue);
     };
