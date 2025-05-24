@@ -33,7 +33,7 @@ class Menu {
     void MainMenu();
 
     /**
-     * Displays the brute force menu and handles user interaction.
+     * Displays the brute force menu and handles user interaction, allowing him to choose choose a bractracking approach instead.
      */
     void BruteForceMenu();
 

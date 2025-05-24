@@ -90,21 +90,20 @@ void Menu::BruteForceMenu() {
     }
 
     vector<Pallet *> solution;
+    auto t1 = high_resolution_clock::now();
 
     switch (backtracking) {
         case 1: {
-            auto t1 = high_resolution_clock::now();
             solution = solver.brute_force(truck);
-            auto t2 = high_resolution_clock::now();
             break;
         }
         case 2: {
-            auto t1 = high_resolution_clock::now();
             solution = solver.backtracking(truck);
-            auto t2 = high_resolution_clock::now();
             break;
         }
     }
+
+    auto t2 = high_resolution_clock::now();
   
     duration<double, std::milli> ms_double = t2 - t1;
     cout << "Time taken: " << ms_double.count() << " ms" << endl;
