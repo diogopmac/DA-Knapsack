@@ -1,7 +1,3 @@
-//
-// Created by diogo on 12/04/2025.
-//
-
 #include "truck.h"
 
 
