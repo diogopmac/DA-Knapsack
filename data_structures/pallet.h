@@ -3,7 +3,7 @@
 
 /**
  * @file pallet.h
- * Definition of the Pallet class.
+ * Declaration of the Pallet class.
  */
 
 /**
@@ -12,6 +12,11 @@
  */
 class Pallet {
 public:
+    /**
+     * Default constructor for the Truck class.
+     */
+    Pallet();
+    
     /**
      * Constructs a Pallet object with the given ID, weight, and value.
      * @param id The unique identifier of the pallet.
