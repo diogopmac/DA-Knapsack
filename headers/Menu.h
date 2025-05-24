@@ -67,7 +67,7 @@ class Menu {
 
     /**
      * Loads the truck with items.
-     * @return 0 if the truck is successfully loaded, or a non-zero value if an error occurs.
+     * @return `0` if the truck is successfully loaded, or `1` value if an error occurs.
      */
     int loadTruck();
 
@@ -77,7 +77,7 @@ class Menu {
     void waitForEnter();
 
     /**
-     * @brief Clears the console screen for better readability.
+     * Clears the console screen for better readability.
      */
     void clearScreen();
 
