@@ -67,7 +67,7 @@ class Menu {
 
     /**
      * Loads the truck with items.
-     * @return `0` if the truck is successfully loaded, or `1` value if an error occurs.
+     * @return `0` if the truck is successfully loaded, or `1` if the operation fails.
      */
     int loadTruck();
 
