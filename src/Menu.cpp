@@ -162,8 +162,6 @@ void Menu::ApproximationMenu() {
         return;
     }
 
-    cout << "========================================\n";
-
     auto t1 = high_resolution_clock::now();
     vector<Pallet *> solution = solver.approximation(truck);
     auto t2 = high_resolution_clock::now();
