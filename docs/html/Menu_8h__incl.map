@@ -1,0 +1,18 @@
+<map id="headers/Menu.h" name="headers/Menu.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="23,5,149,31"/>
+<area shape="rect" id="Node000002" href="$truck_8h.html" title=" " alt="" coords="19,152,153,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,33,50,46,33,63,23,83,25,103,36,123,52,141,48,144,32,126,19,105,18,82,29,60,47,42,65,29"/>
+<area shape="rect" id="Node000005" href="$DataReader_8h.html" title=" " alt="" coords="163,79,273,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="108,28,186,70,183,74,106,33"/>
+<area shape="rect" id="Node000007" href="$Algorithms_8h.html" title="Header file for the Algorithms class, which implements various algorithms for solving the knapsack pr..." alt="" coords="33,79,139,104"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="89,31,89,65,83,65,83,31"/>
+<area shape="rect" id="Node000003" href="$pallet_8h.html" title=" " alt="" coords="5,240,76,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="77,194,57,229,52,227,73,191"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="100,240,163,265"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="99,191,120,227,115,229,95,194"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="200,106,131,147,128,143,197,102"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="183,159,242,185"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="220,104,217,146,212,145,215,104"/>
+<area shape="poly" id="edge9_Node000007_Node000002" title=" " alt="" coords="89,104,89,138,83,138,83,104"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="106,102,184,150,181,154,103,106"/>
+</map>

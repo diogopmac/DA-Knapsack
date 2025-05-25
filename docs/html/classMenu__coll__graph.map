@@ -1,0 +1,9 @@
+<map id="Menu" name="Menu">
+<area shape="rect" id="Node000001" title=" " alt="" coords="105,93,164,119"/>
+<area shape="rect" id="Node000002" href="$classTruck.html" title="Represents a truck with a specific capacity and a set of pallets." alt="" coords="5,5,61,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,38,94,67,122,91,119,95,90,71,55,42"/>
+<area shape="rect" id="Node000003" href="$classDataReader.html" title=" " alt="" coords="85,5,184,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="137,45,137,93,132,93,132,45"/>
+<area shape="rect" id="Node000004" href="$classAlgorithms.html" title=" " alt="" coords="208,5,301,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="230,41,188,72,154,95,151,91,185,67,227,37"/>
+</map>

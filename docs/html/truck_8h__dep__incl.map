@@ -1,0 +1,22 @@
+<map id="data_structures/truck.h" name="data_structures/truck.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="330,5,502,31"/>
+<area shape="rect" id="Node000002" href="$truck_8cpp.html" title=" " alt="" coords="5,79,192,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="352,36,151,81,149,76,351,31"/>
+<area shape="rect" id="Node000003" href="$Algorithms_8h.html" title="Header file for the Algorithms class, which implements various algorithms for solving the knapsack pr..." alt="" coords="217,79,378,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="386,40,318,81,315,76,384,35"/>
+<area shape="rect" id="Node000004" href="$Menu_8h.html" title=" " alt="" coords="373,152,499,177"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="422,44,437,151,432,152,417,45"/>
+<area shape="rect" id="Node000008" href="$DataReader_8h.html" title=" " alt="" coords="454,79,621,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="449,35,519,76,516,81,446,40"/>
+<area shape="rect" id="Node000009" href="$DataReader_8cpp.html" title=" " alt="" coords="543,152,691,177"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="510,31,585,49,616,62,635,77,643,96,642,117,627,153,622,151,636,116,638,97,631,80,613,67,584,54,508,36"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="333,108,415,149,412,154,330,113"/>
+<area shape="rect" id="Node000007" href="$Algorithms_8cpp.html" title=" " alt="" coords="206,152,349,177"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="293,118,283,153,278,151,288,117"/>
+<area shape="rect" id="Node000005" href="$Menu_8cpp.html" title=" " alt="" coords="317,225,425,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="418,189,383,227,379,223,414,186"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html" title=" " alt="" coords="449,225,554,251"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="458,186,493,223,489,227,454,189"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="511,114,454,154,451,150,508,110"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="562,111,606,150,602,154,558,115"/>
+</map>

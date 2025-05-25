@@ -1,0 +1,26 @@
+<map id="data_structures/pallet.h" name="data_structures/pallet.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="225,5,401,31"/>
+<area shape="rect" id="Node000002" href="$pallet_8cpp.html" title=" " alt="" coords="115,79,306,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="287,41,229,81,226,76,284,36"/>
+<area shape="rect" id="Node000003" href="$truck_8h.html" title=" " alt="" coords="330,79,502,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="343,36,401,76,398,81,340,41"/>
+<area shape="rect" id="Node000004" href="$truck_8cpp.html" title=" " alt="" coords="5,152,192,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="352,110,151,154,149,149,351,104"/>
+<area shape="rect" id="Node000005" href="$Algorithms_8h.html" title="Header file for the Algorithms class, which implements various algorithms for solving the knapsack pr..." alt="" coords="217,152,378,177"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="386,113,318,154,315,149,384,109"/>
+<area shape="rect" id="Node000006" href="$Menu_8h.html" title=" " alt="" coords="373,225,499,251"/>
+<area shape="poly" id="edge12_Node000003_Node000006" title=" " alt="" coords="422,118,437,225,432,225,417,118"/>
+<area shape="rect" id="Node000010" href="$DataReader_8h.html" title=" " alt="" coords="454,152,621,177"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="449,109,519,149,516,154,446,113"/>
+<area shape="rect" id="Node000011" href="$DataReader_8cpp.html" title=" " alt="" coords="543,225,691,251"/>
+<area shape="poly" id="edge13_Node000003_Node000011" title=" " alt="" coords="510,104,585,123,616,135,635,150,643,170,642,191,627,226,622,224,636,189,638,170,631,154,613,140,584,128,508,109"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="333,181,415,223,412,227,330,186"/>
+<area shape="rect" id="Node000009" href="$Algorithms_8cpp.html" title=" " alt="" coords="206,225,349,251"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="293,191,283,226,278,224,288,190"/>
+<area shape="rect" id="Node000007" href="$Menu_8cpp.html" title=" " alt="" coords="317,299,425,324"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="418,263,383,300,379,297,414,259"/>
+<area shape="rect" id="Node000008" href="$main_8cpp.html" title=" " alt="" coords="449,299,554,324"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="458,259,493,297,489,300,454,263"/>
+<area shape="poly" id="edge10_Node000010_Node000006" title=" " alt="" coords="511,187,454,227,451,223,508,183"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="562,184,606,223,602,227,558,188"/>
+</map>
