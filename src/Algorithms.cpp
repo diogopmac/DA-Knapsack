@@ -33,7 +33,7 @@ bool sortByRatio(Pallet* a, Pallet* b) {
 std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
     vector<Pallet *> pallets = truck.getPallets();
     int n = pallets.size();
-    if (n > 32) return {};
+    if (n >= 30) return {};
 
     vector<Pallet *> sol;
 
@@ -62,6 +62,7 @@ std::vector<Pallet *> Algorithms::backtracking_pruning(const Truck& truck) {
     const vector<Pallet *> &pallets = truck.getPallets();
     int n = pallets.size();
     double capacity = truck.getCapacity();
+    if (n > 36) return {};
 
     vector<Pallet *> bestSolution;
     double maxValue = 0;
@@ -108,6 +109,7 @@ std::vector<Pallet *> Algorithms::backtracking_no_pruning(const Truck& truck) {
     const vector<Pallet *> &pallets = truck.getPallets();
     int n = pallets.size();
     double capacity = truck.getCapacity();
+    if (n > 36) return {};
 
     vector<Pallet *> bestSolution;
     double maxValue = 0;
@@ -232,6 +234,7 @@ std::vector<Pallet *> Algorithms::approximation(const Truck& truck) {
 
 vector<Pallet *> Algorithms::int_linear_program(const Truck& truck) {
     vector<Pallet *> sol;
+    if (truck.getPallets().size() > 300) return {};
     ofstream outfile("../docs/input.txt");
     if (!outfile.is_open()) {
         cerr << "Unable to open file \"../docs/input.txt\"" << endl;
@@ -256,7 +259,6 @@ vector<Pallet *> Algorithms::int_linear_program(const Truck& truck) {
     outfile.close();
 
     int ret = system("../venv/bin/python ../docs/knapsack_solver.py ../docs/input.txt ../docs/output.txt >null");
-
     if (ret != 0) {
         std::cerr << "Unable to run knapsack_solver.py (" << ret << ")" << std::endl;
         return sol;
