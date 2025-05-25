@@ -39,7 +39,8 @@ public:
      * @note Space Complexity: O(n), due to recursion stack.
      */
     std::vector<Pallet *> brute_force(const Truck& truck);
-
+  
+  
     /**
      * Solves the knapsack problem using the backtracking approach.
      * 
@@ -49,7 +50,8 @@ public:
      * @note Time Complexity: O(2^n), where n is the number of pallets.
      * @note Space Complexity: O(n), due to recursion stack.
      */
-    std::vector<Pallet *> backtracking(const Truck& truck);
+    std::vector<Pallet *> backtracking_pruning(const Truck& truck);
+    std::vector<Pallet *> backtracking_no_pruning(const Truck& truck);
 
     /**
      * Solves the knapsack problem using dynamic programming.

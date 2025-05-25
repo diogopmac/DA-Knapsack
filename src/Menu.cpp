@@ -83,10 +83,11 @@ void Menu::BruteForceMenu() {
     }
 
     int backtracking = 0;
-    while (backtracking != 1 && backtracking != 2) {
+    while (backtracking != 1 && backtracking != 2 && backtracking != 3) {
         backtracking = getIntValue("Select option:\n"
                                    "[1] Brute Force\n"
-                                   "[2] Backtracking\n");
+                                   "[2] Backtracking (no Pruning)\n"
+                                   "[3] Backtracking (Pruning)\n");
     }
 
     vector<Pallet *> solution;
@@ -98,7 +99,11 @@ void Menu::BruteForceMenu() {
             break;
         }
         case 2: {
-            solution = solver.backtracking(truck);
+            solution = solver.backtracking_no_pruning(truck);
+            break;
+        }
+        case 3: {
+            solution = solver.backtracking_pruning(truck);
             break;
         }
     }
