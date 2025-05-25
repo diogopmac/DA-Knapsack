@@ -58,7 +58,7 @@ std::vector<Pallet *> Algorithms::brute_force(const Truck& truck) {
     return sol;
 }
 
-std::vector<Pallet *> Algorithms::backtracking(const Truck& truck) {
+std::vector<Pallet *> Algorithms::backtracking_pruning(const Truck& truck) {
     const vector<Pallet *> &pallets = truck.getPallets();
     int n = pallets.size();
     double capacity = truck.getCapacity();
@@ -88,6 +88,45 @@ std::vector<Pallet *> Algorithms::backtracking(const Truck& truck) {
             }
             return;
         }
+
+        // Include current pallet if it fits
+        if (currWeight + pallets[idx]->getWeight() <= capacity) {
+            currentSolution.push_back(pallets[idx]);
+            backtrack(idx + 1, currWeight + pallets[idx]->getWeight(), currValue + pallets[idx]->getValue());
+            currentSolution.pop_back();
+        }
+
+        // Exclude current pallet
+        backtrack(idx + 1, currWeight, currValue);
+    };
+
+    backtrack(0, 0.0, 0.0);
+    return bestSolution;
+}
+
+std::vector<Pallet *> Algorithms::backtracking_no_pruning(const Truck& truck) {
+    const vector<Pallet *> &pallets = truck.getPallets();
+    int n = pallets.size();
+    double capacity = truck.getCapacity();
+
+    vector<Pallet *> bestSolution;
+    double maxValue = 0;
+    int minPallets = INT_MAX;
+
+    vector<Pallet *> currentSolution;
+
+    // Helper recursive function
+    function<void(int, double, double)> backtrack = [&](int idx, double currWeight, double currValue) {
+        if (idx == n) {
+            if ((currValue > maxValue) ||
+                (currValue == maxValue && currentSolution.size() < minPallets)) {
+                maxValue = currValue;
+                minPallets = currentSolution.size();
+                bestSolution = currentSolution;
+                }
+            return;
+        }
+
 
         // Include current pallet if it fits
         if (currWeight + pallets[idx]->getWeight() <= capacity) {
