@@ -52,6 +52,8 @@ class Menu {
      */
     void ILPMenu();
 
+    void ReportMenu();
+
     /**
      * Validates and retrieves an integer value from a string input.
      * @param s The input string to validate and convert.

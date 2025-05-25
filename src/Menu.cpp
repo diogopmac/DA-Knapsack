@@ -109,14 +109,15 @@ void Menu::BruteForceMenu() {
     }
 
     auto t2 = high_resolution_clock::now();
-  
-    duration<double, std::milli> ms_double = t2 - t1;
-    cout << "Time taken: " << ms_double.count() << " ms" << endl;
+
+    cout << "========================================\n";
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
     }
     else {
+        duration<double, std::milli> ms_double = t2 - t1;
+        cout << "Time taken: " << ms_double.count() << " ms" << endl;
         cout << "========================================\n";
         for (auto p : solution) {
             cout << endl;
@@ -137,12 +138,13 @@ void Menu::DynamicProgrammingMenu() {
     vector<Pallet *> solution = solver.dynamic_program(truck);
     auto t2 = high_resolution_clock::now();
 
-    duration<double, std::milli> ms_double = t2 - t1;
-    cout << "Time taken: " << ms_double.count() << " ms" << endl;
+    cout << "========================================\n";
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
     } else {
+        duration<double, std::milli> ms_double = t2 - t1;
+        cout << "Time taken: " << ms_double.count() << " ms" << endl;
         cout << "========================================\n";
         for (auto p : solution) {
             cout << endl;
@@ -166,12 +168,14 @@ void Menu::ApproximationMenu() {
     vector<Pallet *> solution = solver.approximation(truck);
     auto t2 = high_resolution_clock::now();
 
-    duration<double, std::milli> ms_double = t2 - t1;
-    cout << "Time taken: " << ms_double.count() << " ms" << endl;
+    cout << "========================================\n";
+
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
     } else {
+        duration<double, std::milli> ms_double = t2 - t1;
+        cout << "Time taken: " << ms_double.count() << " ms" << endl;
         cout << "========================================\n";
         for (auto p : solution) {
             cout << endl;
@@ -190,11 +194,17 @@ void Menu::ILPMenu() {
 
     cout << "========================================\n";
 
+    auto t1 = high_resolution_clock::now();
     vector<Pallet *> solution = solver.int_linear_program(truck);
+    auto t2 = high_resolution_clock::now();
+
+    cout << "========================================\n";
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
     } else {
+        duration<double, std::milli> ms_double = t2 - t1;
+        cout << "Time taken: " << ms_double.count() << " ms" << endl;
         cout << "========================================\n";
         for (auto p : solution) {
             cout << endl;
@@ -205,8 +215,74 @@ void Menu::ILPMenu() {
     }
 }
 
+void Menu::ReportMenu() {
+    vector<Pallet *> solution;
+    duration<double, std::milli> ms_double;
 
+    auto t1 = high_resolution_clock::now();
+    solution = solver.brute_force(truck);
+    auto t2 = high_resolution_clock::now();
+    cout << "Brute Force: ";
+    if (solution.empty()) cout << "No solution found!" << endl;
+    else {
+        ms_double = t2 - t1;
+        cout << ms_double.count() << " ms" << endl;
+    }
 
+    t1 = high_resolution_clock::now();
+    solution = solver.backtracking_no_pruning(truck);
+    t2 = high_resolution_clock::now();
+    cout << "Backtracking (no Pruning): ";
+    if (solution.empty()) cout << "No solution found!" << endl;
+    else {
+        ms_double = t2 - t1;
+        cout << ms_double.count() << " ms" << endl;
+    }
+
+    t1 = high_resolution_clock::now();
+    solution = solver.backtracking_pruning(truck);
+    t2 = high_resolution_clock::now();
+    cout << "Backtracking (Pruning): ";
+    if (solution.empty()) cout << "No solution found!" << endl;
+    else {
+        ms_double = t2 - t1;
+        cout << ms_double.count() << " ms" << endl;
+    }
+
+    t1 = high_resolution_clock::now();
+    solution = solver.dynamic_program(truck);
+    t2 = high_resolution_clock::now();
+    cout << "Dynamic Programming: ";
+    if (solution.empty()) cout << "No solution found!" << endl;
+    else {
+        ms_double = t2 - t1;
+        cout << ms_double.count() << " ms" << endl;
+    }
+
+    t1 = high_resolution_clock::now();
+    solver.approximation_by_ratio(truck);
+    t2 = high_resolution_clock::now();
+    cout << "Approximation (by Ratio): ";
+    ms_double = t2 - t1;
+    cout << ms_double.count() << " ms" << endl;
+
+    t1 = high_resolution_clock::now();
+    solver.approximation_by_value(truck);
+    t2 = high_resolution_clock::now();
+    cout << "Approximation (by Value): ";
+    ms_double = t2 - t1;
+    cout << ms_double.count() << " ms" << endl;
+
+    t1 = high_resolution_clock::now();
+    solution = solver.int_linear_program(truck);
+    t2 = high_resolution_clock::now();
+    cout << "Integer Linear Programming: ";
+    if (solution.empty()) cout << "No solution found!" << endl;
+    else {
+        ms_double = t2 - t1;
+        cout << ms_double.count() << " ms" << endl;
+    }
+}
 
 
 void Menu::MainMenu() {
@@ -222,7 +298,8 @@ void Menu::MainMenu() {
                 "[3] Dynamic Programming Approach\n"
                 "[4] Approximation Algorithms\n"
                 "[5] Integer Linear Programming Algorithm\n"
-                "[6] Exit" << endl;
+                "[6] Report Menu (All Algorithms)\n"
+                "[7] Exit" << endl;
         cout << "========================================\n";
         cout << "Select an option: ";
 
@@ -263,12 +340,16 @@ void Menu::MainMenu() {
                 waitForEnter();
                 break;
             case 6:
+                ReportMenu();
+                waitForEnter();
+                break;
+            case 7:
                 cout << "Leaving" << endl;
                 break;
             default:
                 cout << "Invalid option." << endl;
                 break;
         }
-    } while (option != 6);
+    } while (option != 7);
 }
 
