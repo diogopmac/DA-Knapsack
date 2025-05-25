@@ -1,14 +1,16 @@
-//
-// Created by diogo on 07/04/2025.
-//
-
 #include "../headers/Menu.h"
 
 #include <iostream>
 #include <ostream>
 #include <limits>
+#include <chrono>
 
 using namespace std;
+
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::milliseconds;
+using std::chrono::duration;
 
 Menu::Menu() = default;
 
@@ -88,8 +90,8 @@ void Menu::BruteForceMenu() {
                                    "[3] Backtracking (Pruning)\n");
     }
 
-
     vector<Pallet *> solution;
+    auto t1 = high_resolution_clock::now();
 
     switch (backtracking) {
         case 1: {
@@ -105,6 +107,11 @@ void Menu::BruteForceMenu() {
             break;
         }
     }
+
+    auto t2 = high_resolution_clock::now();
+  
+    duration<double, std::milli> ms_double = t2 - t1;
+    cout << "Time taken: " << ms_double.count() << " ms" << endl;
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
@@ -126,7 +133,12 @@ void Menu::DynamicProgrammingMenu() {
         return;
     }
 
+    auto t1 = high_resolution_clock::now();
     vector<Pallet *> solution = solver.dynamic_program(truck);
+    auto t2 = high_resolution_clock::now();
+
+    duration<double, std::milli> ms_double = t2 - t1;
+    cout << "Time taken: " << ms_double.count() << " ms" << endl;
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
@@ -150,7 +162,12 @@ void Menu::ApproximationMenu() {
 
     cout << "========================================\n";
 
+    auto t1 = high_resolution_clock::now();
     vector<Pallet *> solution = solver.approximation(truck);
+    auto t2 = high_resolution_clock::now();
+
+    duration<double, std::milli> ms_double = t2 - t1;
+    cout << "Time taken: " << ms_double.count() << " ms" << endl;
 
     if (solution.empty()) {
         cout << "Input too big! No solution found!" << endl;
